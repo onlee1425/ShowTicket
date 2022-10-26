@@ -10,4 +10,9 @@ public class ShowticketApplication {
 		SpringApplication.run(ShowticketApplication.class, args);
 	}
 
+
+	// 깃허브 리뷰 test
+	public void Test() {
+
+	}
 }
