@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import zb.Team.showticket.user.domain.SignUpForm;
 import zb.Team.showticket.user.domain.Users;
-import zb.Team.showticket.user.service.SignUpUserService;
+import zb.Team.showticket.user.service.UserSignUpService;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SignUpServiceTest {
 
     @Autowired
-    private SignUpUserService signUpUserService;
+    private UserSignUpService userSignUpService;
 
 
     @Test
@@ -28,7 +28,7 @@ public class SignUpServiceTest {
                 .phone("010-0000-0000")
                 .build();
 
-        Users u = signUpUserService.signUp(form);
+        Users u = userSignUpService.signUp(form);
         assertNotNull(u.getId());
         assertNotNull(u.getCreateAt());
     }
