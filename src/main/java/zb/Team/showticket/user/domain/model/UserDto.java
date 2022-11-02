@@ -8,12 +8,17 @@ import zb.Team.showticket.user.domain.Users;
 @Getter
 @Setter
 @AllArgsConstructor
+/**
+ * get Info 확인정보
+ */
 public class UserDto {
 
     private String email;
     private Long id;
+    private String name;
+    private Integer credit;
 
     public static UserDto from(Users users){
-        return new UserDto(users.getEmail(),users.getId());
+        return new UserDto(users.getEmail(),users.getId(), users.getName(), users.getCredit());
     }
 }

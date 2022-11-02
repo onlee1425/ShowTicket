@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import zb.Team.showticket.user.application.SignInApplication;
 import zb.Team.showticket.user.domain.SignInForm;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class SignInController {
