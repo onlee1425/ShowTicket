@@ -2,22 +2,25 @@ package zb.Team.showticket.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import zb.Team.showticket.user.application.SignInApplication;
 import zb.Team.showticket.user.domain.SignInForm;
 
 @RestController
-@RequestMapping("/signin")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class SignInController {
 
     private final SignInApplication signInApplication;
 
-    @PostMapping("/user")
-    public ResponseEntity<String> signInUsser(@RequestBody SignInForm form){
+    @GetMapping("/signin")
+    public String signInUser(){
+        return "/user/signin";
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<String> signInUser(@RequestBody SignInForm form){
         return ResponseEntity.ok(signInApplication.userLoginToken(form));
     }
 }
