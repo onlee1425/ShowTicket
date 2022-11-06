@@ -3,7 +3,7 @@ package zb.Team.showticket.user.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zb.Team.showticket.user.domain.SignUpForm;
+import zb.Team.showticket.user.domain.UserSignUpForm;
 import zb.Team.showticket.user.domain.UserRepository;
 import zb.Team.showticket.user.domain.Users;
 import zb.Team.showticket.user.exception.CustomException;
@@ -19,7 +19,7 @@ public class UserSignUpService {
 
     private final UserRepository userRepository;
 
-    public Users signUp(SignUpForm form){
+    public Users signUp(UserSignUpForm form){
         return userRepository.save(Users.from(form));
     }
 
@@ -47,7 +47,7 @@ public class UserSignUpService {
 
     //메일 확인을 통한 인증처리
     @Transactional
-    public LocalDateTime ChangeCustomerValidationEmail(Long customerId, String verificationCode) {
+    public LocalDateTime ChangeUserValidationEmail(Long customerId, String verificationCode) {
         Optional<Users> usersOptional = userRepository.findById(customerId);
 
         if (usersOptional.isPresent()) {

@@ -2,15 +2,14 @@ package zb.Team.showticket.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import zb.Team.showticket.user.application.SignInApplication;
+import zb.Team.showticket.application.SignInApplication;
 import zb.Team.showticket.user.domain.SignInForm;
 
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class SignInController {
+public class UserSignInController {
 
     private final SignInApplication signInApplication;
 
