@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import zb.Team.showticket.auth.domain.ProviderVo;
 import zb.Team.showticket.auth.domain.UserType;
 import zb.Team.showticket.auth.domain.UserVo;
 import zb.Team.showticket.auth.util.Aes256Util;
@@ -46,4 +47,12 @@ public class JwtAuthProvider {
         return new UserVo(Long.valueOf(Objects.requireNonNull(Aes256Util.decrypt(c.getId())))
                 ,Aes256Util.decrypt(c.getSubject()));
     }
+
+    public ProviderVo getProviderVo(String token){
+        Claims c = Jwts.parser().setSigningKey(secretkey).parseClaimsJws(token).getBody();
+        return new ProviderVo(Long.valueOf(Objects.requireNonNull(Aes256Util.decrypt(c.getId())))
+                ,Aes256Util.decrypt(c.getSubject()));
+    }
+
+
 }

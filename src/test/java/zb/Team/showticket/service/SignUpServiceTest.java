@@ -3,7 +3,7 @@ package zb.Team.showticket.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import zb.Team.showticket.user.domain.SignUpForm;
+import zb.Team.showticket.user.domain.UserSignUpForm;
 import zb.Team.showticket.user.domain.Users;
 import zb.Team.showticket.user.service.UserSignUpService;
 
@@ -20,7 +20,7 @@ public class SignUpServiceTest {
 
     @Test
     void signUp() {
-        SignUpForm form = SignUpForm.builder()
+        UserSignUpForm form = UserSignUpForm.builder()
                 .name("user1")
                 .birth(LocalDate.now())
                 .email("abc@naver.com")

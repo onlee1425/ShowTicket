@@ -2,15 +2,14 @@ package zb.Team.showticket.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import zb.Team.showticket.user.application.SignUpApplication;
-import zb.Team.showticket.user.domain.SignUpForm;
+import zb.Team.showticket.application.SignUpApplication;
+import zb.Team.showticket.user.domain.UserSignUpForm;
 
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class SignUpController {
+public class UserSignUpController {
 
     private final SignUpApplication signUpApplication;
 
@@ -20,7 +19,7 @@ public class SignUpController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> userSignUp(@RequestBody SignUpForm form){
+    public ResponseEntity<String> userSignUp(@RequestBody UserSignUpForm form){
 
         return ResponseEntity.ok(signUpApplication.userSignUp(form));
     }
