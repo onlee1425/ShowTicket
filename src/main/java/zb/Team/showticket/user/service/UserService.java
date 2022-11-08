@@ -2,8 +2,8 @@ package zb.Team.showticket.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import zb.Team.showticket.user.domain.UserRepository;
-import zb.Team.showticket.user.domain.Users;
+import zb.Team.showticket.user.domain.repository.UserRepository;
+import zb.Team.showticket.user.domain.entity.Users;
 
 import java.util.Optional;
 

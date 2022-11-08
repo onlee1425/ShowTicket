@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zb.Team.showticket.auth.config.JwtAuthProvider;
 import zb.Team.showticket.auth.domain.ProviderVo;
-import zb.Team.showticket.provider.domain.Provider;
+import zb.Team.showticket.provider.domain.entity.Provider;
 import zb.Team.showticket.provider.domain.model.ProviderDto;
 import zb.Team.showticket.provider.service.ProviderService;
 import zb.Team.showticket.user.exception.CustomException;

@@ -1,7 +1,8 @@
-package zb.Team.showticket.user.domain;
+package zb.Team.showticket.user.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import zb.Team.showticket.user.domain.entity.Users;
 
 import java.util.Optional;
 
@@ -9,4 +10,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<Users,Long> {
 
     Optional<Users> findByEmail(String email);
+
 }

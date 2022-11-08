@@ -13,11 +13,6 @@ public class UserSignUpController {
 
     private final SignUpApplication signUpApplication;
 
-    @GetMapping("/signup")
-    public String userSignup(){
-        return "/user/signup";
-    }
-
     @PostMapping("/signup")
     public ResponseEntity<String> userSignUp(@RequestBody UserSignUpForm form){
 

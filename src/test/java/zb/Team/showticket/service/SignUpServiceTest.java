@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import zb.Team.showticket.user.domain.UserSignUpForm;
-import zb.Team.showticket.user.domain.Users;
+import zb.Team.showticket.user.domain.entity.Users;
 import zb.Team.showticket.user.service.UserSignUpService;
 
 import java.time.LocalDate;

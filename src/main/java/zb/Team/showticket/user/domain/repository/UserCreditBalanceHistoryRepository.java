@@ -1,4 +1,4 @@
-package zb.Team.showticket.user.domain;
+package zb.Team.showticket.user.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

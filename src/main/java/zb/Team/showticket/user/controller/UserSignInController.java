@@ -13,11 +13,6 @@ public class UserSignInController {
 
     private final SignInApplication signInApplication;
 
-    @GetMapping("/signin")
-    public String signInUser(){
-        return "/user/signin";
-    }
-
     @PostMapping("/signin")
     public ResponseEntity<String> signInUser(@RequestBody SignInForm form){
         return ResponseEntity.ok(signInApplication.userLoginToken(form));

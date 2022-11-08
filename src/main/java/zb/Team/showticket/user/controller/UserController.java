@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import zb.Team.showticket.auth.config.JwtAuthProvider;
 import zb.Team.showticket.auth.domain.UserVo;
 import zb.Team.showticket.user.domain.ChangeCreditForm;
-import zb.Team.showticket.user.domain.Users;
+import zb.Team.showticket.user.domain.entity.Users;
 import zb.Team.showticket.user.domain.model.UserDto;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
@@ -33,7 +33,7 @@ public class UserController {
 
     @PostMapping("/balance")
     public ResponseEntity<Integer> changeCredit(@RequestHeader(name = "AUTH-TOKEN") String token,
-                                                 @RequestBody ChangeCreditForm form) {
+                                                @RequestBody ChangeCreditForm form) {
         UserVo vo = provider.getUserVo(token);
 
         return ResponseEntity.ok(userCreditBalanceService.changeCredit(vo.getId(), form).getCurrentCredit());
