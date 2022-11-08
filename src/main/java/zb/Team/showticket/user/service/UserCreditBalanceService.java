@@ -1,12 +1,11 @@
 package zb.Team.showticket.user.service;
 
-import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import zb.Team.showticket.user.domain.ChangeCreditForm;
-import zb.Team.showticket.user.domain.UserCreditBalanceHistoryRepository;
-import zb.Team.showticket.user.domain.UserRepository;
+import zb.Team.showticket.user.domain.repository.UserCreditBalanceHistoryRepository;
+import zb.Team.showticket.user.domain.repository.UserRepository;
 import zb.Team.showticket.user.domain.model.UserCreditBalanceHistory;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
@@ -34,7 +33,7 @@ public class UserCreditBalanceService {
         //크레딧 변동
         userCreditBalanceHistory = UserCreditBalanceHistory.builder()
                 .currentCredit(form.getCredit())
-                .currentCredit(userCreditBalanceHistory.getCurrentCredit()+ form.getCredit())
+                .changeCredit(userCreditBalanceHistory.getCurrentCredit()+ form.getCredit())
                 .description(form.getMessage())
                 .user(userCreditBalanceHistory.getUser())
                 .build();

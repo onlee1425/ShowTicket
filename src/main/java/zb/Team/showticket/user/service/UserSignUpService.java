@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import zb.Team.showticket.user.domain.UserSignUpForm;
-import zb.Team.showticket.user.domain.UserRepository;
-import zb.Team.showticket.user.domain.Users;
+import zb.Team.showticket.user.domain.repository.UserRepository;
+import zb.Team.showticket.user.domain.entity.Users;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
 

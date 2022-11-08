@@ -3,7 +3,7 @@ package zb.Team.showticket.provider.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import zb.Team.showticket.provider.domain.Provider;
+import zb.Team.showticket.provider.domain.entity.Provider;
 
 @Getter
 @Setter

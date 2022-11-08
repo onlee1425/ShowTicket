@@ -3,10 +3,9 @@ package zb.Team.showticket.provider.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zb.Team.showticket.provider.domain.Provider;
-import zb.Team.showticket.provider.domain.ProviderRepository;
+import zb.Team.showticket.provider.domain.entity.Provider;
+import zb.Team.showticket.provider.domain.repository.ProviderRepository;
 import zb.Team.showticket.provider.domain.ProviderSignUpForm;
-import zb.Team.showticket.user.domain.Users;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
 

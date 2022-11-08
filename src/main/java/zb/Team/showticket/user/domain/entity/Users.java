@@ -1,10 +1,11 @@
-package zb.Team.showticket.provider.domain;
+package zb.Team.showticket.user.domain.entity;
 
 import lombok.*;
 import org.hibernate.envers.AuditOverride;
-import zb.Team.showticket.user.domain.BaseEntity;
+import zb.Team.showticket.user.domain.UserSignUpForm;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
@@ -15,10 +16,10 @@ import java.util.Locale;
 @NoArgsConstructor
 @AllArgsConstructor
 @AuditOverride(forClass = BaseEntity.class)
-public class Provider extends BaseEntity {
+public class Users extends BaseEntity{
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
@@ -27,18 +28,24 @@ public class Provider extends BaseEntity {
     private String name;
     private String password;
     private String phone;
+    private LocalDate birth;
 
     //email verify
     private LocalDateTime verifyExpiredAt;
     private String verificationCode;
     private boolean verify;
 
-    public static Provider from(ProviderSignUpForm form){
-        return Provider.builder()
+    //credit
+    @Column(columnDefinition = "int default 0")
+    private Integer credit;
+
+    public static Users from(UserSignUpForm form){
+        return Users.builder()
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
                 .password(form.getPassword())
                 .name(form.getName())
                 .phone(form.getPhone())
+                .birth(form.getBirth())
                 .verify(false)
                 .build();
     }

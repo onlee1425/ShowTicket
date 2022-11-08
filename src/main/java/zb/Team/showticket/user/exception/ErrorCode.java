@@ -18,8 +18,12 @@ public enum ErrorCode {
     LOGIN_CHECK_FAIL(HttpStatus.BAD_REQUEST,"아이디 또는 패스워드가 일치하지 않습니다."),
     
     //credit
-    NOT_ENOUGH_CREDIT(HttpStatus.BAD_REQUEST,"크레딧이 부족합니다.");
+    NOT_ENOUGH_CREDIT(HttpStatus.BAD_REQUEST,"크레딧이 부족합니다."),
 
+    //board
+    WRONG_MATCH_USER(HttpStatus.BAD_REQUEST,"게시글 작성자가 아닙니다."),
+    NOT_FOUND_REVIEWS(HttpStatus.BAD_REQUEST,"게시글이 존재하지 않습니다."),
+    NOT_FOUND_BOARD(HttpStatus.BAD_REQUEST,"게시판이 존재하지 않습니다.");
 
     private final HttpStatus httpStatus;
     private final String detail;

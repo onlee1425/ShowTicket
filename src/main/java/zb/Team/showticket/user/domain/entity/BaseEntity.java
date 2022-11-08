@@ -1,4 +1,4 @@
-package zb.Team.showticket.user.domain;
+package zb.Team.showticket.user.domain.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
