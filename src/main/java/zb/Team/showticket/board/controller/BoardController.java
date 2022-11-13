@@ -48,7 +48,10 @@ public class BoardController {
     public SingleResult<Post> post(@RequestHeader(name = "AUTH-TOKEN") String token, @PathVariable String boardName, @Valid @ModelAttribute PostDto post) {
         UserVo vo = provider.getUserVo(token);
         Long id = vo.getId();
-        return responseService.getSingleResult(boardService.writePost(id, boardName, post));
+        String email = vo.getEmail();
+        return responseService.getSingleResult(boardService.writePost(id,email, boardName, post));
+
+        //id를 검증해서 유저타입<->보드타입 비교 후 보드서비스로 넘겨주기
     }
 
     @ApiOperation(value = "게시판 글 수정", notes = "게시판의 단건 게시글을 수정한다.")
@@ -56,6 +59,7 @@ public class BoardController {
     public SingleResult<Post> post(@RequestHeader(name = "AUTH-TOKEN") String token, @PathVariable long postId, @Valid @ModelAttribute PostDto post) {
         UserVo vo = provider.getUserVo(token);
         Long id = vo.getId();
+
         return responseService.getSingleResult(boardService.updatePost(postId, id, post));
     }
 

@@ -18,39 +18,47 @@ import javax.persistence.*;
 //리뷰게시글
 public class Post extends BaseEntity {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long postId;
-        @Column(nullable = false, length = 100)
-        private String title;
-        @Column(length = 500)
-        private String content;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "board_id")
-        private Board board; // 게시글 - 게시판의 관계 - N:1
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long postId;
+    @Column(nullable = false, length = 100)
+    private String title;
+    @Column(length = 500)
+    private String content;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "board_id")
+    private Board board; // 게시글 - 게시판의 관계 - N:1
+    private String board_name;
+    private String board_type;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "user_id")
-        private Users user;  // 게시글 - 회원의 관계 - N:1
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Users user;  // 게시글 - 회원의 관계 - N:1
+    private String user_type;
+    private String user_name;
 
-        protected Board getBoard() {
-            return board;
-        }
+    protected Board getBoard() {
+        return board;
+    }
 
-        // 생성자
-        public Post(Users user,Board board, String title, String content) {
-            this.user = user;
-            this.board = board;
-            this.title = title;
-            this.content = content;
-        }
+    // 생성자
+    public Post(Users user, Board board, String title, String content) {
+        this.user = user;
+        this.user_name = user.getName();
+        this.board = board;
+        this.board_name = board.getName();
+        this.board_type = board.getBoardType();
+        this.title = title;
+        this.content = content;
+        this.user_type = user.getType();
+    }
 
-        // 수정시 데이터 처리
-        public Post setUpdate(String title, String content) {
-            this.title = title;
-            this.content = content;
-            return this;
-        }
+    // 수정시 데이터 처리
+    public Post setUpdate(String title, String content) {
+        this.title = title;
+        this.content = content;
+        return this;
+    }
 }

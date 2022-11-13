@@ -29,6 +29,7 @@ public class Users extends BaseEntity{
     private String password;
     private String phone;
     private LocalDate birth;
+    private String type;
 
     //email verify
     private LocalDateTime verifyExpiredAt;
@@ -46,7 +47,9 @@ public class Users extends BaseEntity{
                 .name(form.getName())
                 .phone(form.getPhone())
                 .birth(form.getBirth())
+                .type("user")
                 .verify(false)
+                .credit(0)
                 .build();
     }
 }
