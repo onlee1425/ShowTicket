@@ -47,7 +47,7 @@ public class Users extends BaseEntity{
                 .name(form.getName())
                 .phone(form.getPhone())
                 .birth(form.getBirth())
-                .type("user")
+                .type("user,all")
                 .verify(false)
                 .credit(0)
                 .build();
