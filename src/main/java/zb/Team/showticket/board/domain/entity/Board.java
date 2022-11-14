@@ -19,4 +19,6 @@ public class Board extends BaseEntity{
     private Long boardId;
     @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
+    private String boardType;
 }

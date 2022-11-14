@@ -11,6 +11,7 @@ import zb.Team.showticket.user.domain.entity.Users;
 import zb.Team.showticket.user.domain.repository.UserRepository;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
+import zb.Team.showticket.user.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,11 +44,18 @@ public class BoardService {
     }
 
     // 게시글 등록
-    public Post writePost(Long id, String boardName, PostDto postDto) {
+    public Post writePost(Long id,String email, String boardName, PostDto postDto) {
         Board board = findBoard(boardName);
-        Post post = new Post(userRepository.findById(id).
+        String btype = board.getBoardType();
+
+        Post post = new Post(userRepository.findByIdAndEmail(id,email).
                 orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER))
                 , board, postDto.getTitle(), postDto.getContent());
+
+        // user 타입과 게시판 타입이 일치하지 않을경우 예외발생
+        if (!post.getUser_type().contains(btype)){
+            throw new CustomException(ErrorCode.NOT_MACTH_USERTYPE);
+        }
         return postRepository.save(post);
     }
 
@@ -55,8 +63,9 @@ public class BoardService {
     public Post updatePost(long postId, Long id, PostDto postDto) {
         Post post = getPost(postId);
         Users user = post.getUser();
-        if (!id.equals(user.getId()))
+        if (!id.equals(user.getId())){
             throw new CustomException(ErrorCode.WRONG_MATCH_USER);
+        }
         post.setUpdate(postDto.getTitle(), postDto.getContent());
         return postRepository.save(post);
     }

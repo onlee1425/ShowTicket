@@ -17,8 +17,9 @@ public class UserDto {
     private Long id;
     private String name;
     private Integer credit;
+    private String type;
 
     public static UserDto from(Users users){
-        return new UserDto(users.getEmail(),users.getId(), users.getName(), users.getCredit());
+        return new UserDto(users.getEmail(),users.getId(), users.getName(), users.getCredit(), users.getType());
     }
 }
