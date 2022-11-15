@@ -14,7 +14,7 @@ public class UserSignInController {
 
     private final SignInApplication signInApplication;
 
-    @ApiOperation(value = "유저 로그인", notes = "로그인을 통한 토큰 발급.")
+    @ApiOperation(value = "로그인", notes = "로그인을 통한 토큰 발급.")
     @PostMapping("/signin")
     public ResponseEntity<String> signInUser(@RequestBody SignInForm form){
         return ResponseEntity.ok(signInApplication.userLoginToken(form));

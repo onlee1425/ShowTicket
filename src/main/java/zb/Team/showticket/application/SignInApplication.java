@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import zb.Team.showticket.auth.config.JwtAuthProvider;
 import zb.Team.showticket.auth.domain.UserType;
-import zb.Team.showticket.provider.domain.entity.Provider;
-import zb.Team.showticket.provider.service.ProviderService;
 import zb.Team.showticket.user.domain.SignInForm;
 import zb.Team.showticket.user.domain.entity.Users;
 import zb.Team.showticket.user.exception.CustomException;
@@ -16,7 +14,6 @@ import zb.Team.showticket.user.service.UserService;
 @RequiredArgsConstructor
 public class SignInApplication {
     private final UserService userService;
-    private final ProviderService providerService;
     private final JwtAuthProvider provider;
 
     // user
@@ -26,10 +23,4 @@ public class SignInApplication {
         return provider.createToken(u.getEmail(),u.getId(), UserType.USER);
     }
 
-    // provider
-    public String providerLoginToken(SignInForm form){
-        Provider p = providerService.findValidProvider(form.getEmail(), form.getPassword())
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER.LOGIN_CHECK_FAIL));
-        return provider.createToken(p.getEmail(),p.getId(),UserType.PROVIDER);
-    }
 }
