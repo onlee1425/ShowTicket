@@ -24,8 +24,9 @@ public enum ErrorCode {
     WRONG_MATCH_USER(HttpStatus.BAD_REQUEST,"게시글 작성자가 아닙니다."),
     NOT_FOUND_REVIEWS(HttpStatus.BAD_REQUEST,"게시글이 존재하지 않습니다."),
     NOT_FOUND_BOARD(HttpStatus.BAD_REQUEST,"게시판이 존재하지 않습니다."),
-    NOT_MACTH_USERTYPE(HttpStatus.BAD_REQUEST,"현재 유저타입으로는 해당 게시판 작성이 불가합니다");
-
+    NOT_MACTH_USERTYPE(HttpStatus.BAD_REQUEST,"현재 유저타입으로는 해당 게시판 작성이 불가합니다"),
+    ADD_ONLY_SHOW_BOARD(HttpStatus.BAD_REQUEST,"해당 게시판은 공연 게시글만 작성 가능합니다."),
+    READ_ONLY_SHOW_BOARD(HttpStatus.BAD_REQUEST,"공연 게시판만 조회 가능합니다");
     private final HttpStatus httpStatus;
     private final String detail;
 
