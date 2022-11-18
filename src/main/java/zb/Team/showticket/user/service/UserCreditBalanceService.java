@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import zb.Team.showticket.user.domain.ChangeCreditForm;
 import zb.Team.showticket.user.domain.repository.UserCreditBalanceHistoryRepository;
 import zb.Team.showticket.user.domain.repository.UserRepository;
-import zb.Team.showticket.user.domain.model.UserCreditBalanceHistory;
+import zb.Team.showticket.user.domain.entity.UserCreditBalanceHistory;
 import zb.Team.showticket.user.exception.CustomException;
 import zb.Team.showticket.user.exception.ErrorCode;
 
@@ -37,7 +37,7 @@ public class UserCreditBalanceService {
                 .description(form.getMessage())
                 .user(userCreditBalanceHistory.getUser())
                 .build();
-        userCreditBalanceHistory.getUser().setCredit(userCreditBalanceHistory.getCurrentCredit());
+        userCreditBalanceHistory.getUser().setCredit(userCreditBalanceHistory.getChangeCredit());
         return creditRepo.save(userCreditBalanceHistory);
     }
 

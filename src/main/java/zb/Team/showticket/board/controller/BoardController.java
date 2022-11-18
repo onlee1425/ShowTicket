@@ -7,7 +7,9 @@ import zb.Team.showticket.auth.config.JwtAuthProvider;
 import zb.Team.showticket.auth.domain.UserVo;
 import zb.Team.showticket.board.domain.entity.Board;
 import zb.Team.showticket.board.domain.entity.Post;
+import zb.Team.showticket.board.domain.entity.ShowPost;
 import zb.Team.showticket.board.domain.model.PostDto;
+import zb.Team.showticket.board.domain.model.ShowPostDto;
 import zb.Team.showticket.board.responsehandler.CommonResult;
 import zb.Team.showticket.board.responsehandler.ListResult;
 import zb.Team.showticket.board.responsehandler.ResponseService;
@@ -51,7 +53,6 @@ public class BoardController {
         String email = vo.getEmail();
         return responseService.getSingleResult(boardService.writePost(id,email, boardName, post));
 
-        //id를 검증해서 유저타입<->보드타입 비교 후 보드서비스로 넘겨주기
     }
 
     @ApiOperation(value = "게시판 글 수정", notes = "게시판의 단건 게시글을 수정한다.")
@@ -69,6 +70,47 @@ public class BoardController {
         UserVo vo = provider.getUserVo(token);
         Long id = vo.getId();
         boardService.deletePost(postId, id);
+        return responseService.getSuccessResult();
+    }
+
+    // 공연 게시판 글 조회
+    @ApiOperation(value = "공연 게시판 글 리스트", notes = "공연 게시판의 게시글 모든 게시글을 조회한다.")
+    @GetMapping(value = "/show/{boardName}/posts")
+    public ListResult<ShowPost> showPosts(@PathVariable String boardName) {
+        return responseService.getListResult(boardService.findShowPosts(boardName));
+    }
+
+    @ApiOperation(value = "공연 게시판 글 상세", notes = "공연 게시판의 단건 게시글의 상세정보를 조회한다.")
+    @GetMapping(value = "/show/post/{postId}")
+    public SingleResult<ShowPost> showPost(@PathVariable long postId) {
+        return responseService.getSingleResult(boardService.getShowPost(postId));
+    }
+
+    @ApiOperation(value = "공연 게시판 글 작성", notes = "공연 게시판에 글을 작성한다.")
+    @PostMapping(value = "/show/{boardName}")
+    public SingleResult<ShowPost> createShowPost(@RequestHeader(name = "AUTH-TOKEN") String token, @PathVariable String boardName, @Valid @ModelAttribute ShowPostDto showPostDto) {
+        UserVo vo = provider.getUserVo(token);
+        Long id = vo.getId();
+        String email = vo.getEmail();
+        return responseService.getSingleResult(boardService.writeShowPost(id,email, boardName, showPostDto));
+
+    }
+
+    @ApiOperation(value = "공연 게시판 글 수정", notes = "공연 게시판의 단건 게시글을 수정한다.")
+    @PutMapping(value = "/show/post/{postId}")
+    public SingleResult<ShowPost> editShowPost(@RequestHeader(name = "AUTH-TOKEN") String token, @PathVariable long postId, @Valid @ModelAttribute ShowPostDto showPostDto) {
+        UserVo vo = provider.getUserVo(token);
+        Long id = vo.getId();
+
+        return responseService.getSingleResult(boardService.updateShowPost(postId, id, showPostDto));
+    }
+
+    @ApiOperation(value = "공연 게시판 글 삭제", notes = "공연 게시판의 단건 게시글을 삭제한다.")
+    @DeleteMapping(value = "/show/post/{postId}")
+    public CommonResult deleteShowPost(@RequestHeader(name = "AUTH-TOKEN") String token, @PathVariable long postId) {
+        UserVo vo = provider.getUserVo(token);
+        Long id = vo.getId();
+        boardService.deleteShowPost(postId, id);
         return responseService.getSuccessResult();
     }
 }

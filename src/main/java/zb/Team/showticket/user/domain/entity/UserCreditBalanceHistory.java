@@ -1,8 +1,6 @@
-package zb.Team.showticket.user.domain.model;
+package zb.Team.showticket.user.domain.entity;
 
 import lombok.*;
-import zb.Team.showticket.user.domain.entity.BaseEntity;
-import zb.Team.showticket.user.domain.entity.Users;
 
 import javax.persistence.*;
 
