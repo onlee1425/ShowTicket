@@ -1,0 +1,21 @@
+version : "3"
+services:
+  rdb:
+    container_name: mysql
+    image: mysql:8.0.31
+    environment:
+      MYSQL_DATABASE: ticket
+      MYSQL_ROOT_PASSWORD: dnswjsqud12#
+    volumes:
+      - ./db/data:/var/lib/mysql:rw
+    ports:
+      - "3309:3306"
+  app:
+    container_name: showticket
+    image: showticket:latest
+    depends_on:
+      - rdb
+      - redis
+    ports:
+      - "8080:8080"
+    restart: always
