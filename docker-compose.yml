@@ -12,10 +12,9 @@ services:
       - "3309:3306"
   app:
     container_name: showticket
-    image: showticket:latest
+    image: ggogi/showticket:latest
     depends_on:
       - rdb
-      - redis
     ports:
       - "8080:8080"
     restart: always
